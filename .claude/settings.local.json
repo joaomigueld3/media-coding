@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m py_compile /home/joao/videos-coding/extract_audio.py)",
+      "Bash(python3 -m py_compile /home/joao/videos-coding/transcribe_audio.py)",
+      "Bash(python3 -m py_compile /home/joao/videos-coding/translate_text.py /home/joao/videos-coding/text_to_speech.py)"
+    ]
+  }
+}

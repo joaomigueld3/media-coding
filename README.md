@@ -18,11 +18,14 @@ Toolkit modular em Python para download, edição, processamento e automação d
 
 ```text
 media-coding/
+├── videos/                 # Pasta padrão para guardar vídeos de entrada e saída
+├── downloads/              # Pasta de downloads gerados via yt-dlp
+│
 ├── download_video.py       # Download de vídeos com seleção de resolução (240p a 8K)
 ├── download_audio.py       # Download direto da faixa de áudio em MP3
 ├── extract_audio.py        # Extrai áudio de vídeos locais (MP4, MKV -> MP3/WAV)
 │
-├── cut_video.py            # Corte rápido de trechos de vídeo (início e duração)
+├── cut_video.py            # Corte rápido de trechos de vídeo (lê e salva na pasta videos/)
 ├── remove_cut_video.py     # Remove trecho do final do vídeo via ffprobe
 ├── join_video.py           # Concatena 2 ou mais vídeos sem reprocessar
 ├── cut_audio.py            # Corte preciso de arquivos de áudio
@@ -31,9 +34,8 @@ media-coding/
 ├── translate_text.py       # Tradução de texto entre múltiplos idiomas (Google / Ollama)
 ├── text_to_speech.py       # Síntese de voz a partir de texto (Edge TTS / gTTS / pyttsx3)
 │
-├── INSTALACAO.md           # Guia detalhado de instalação de dependências e ambiente
-├── AI_TOOLS.md             # Guia comparativo das ferramentas e modelos de IA
-└── links.txt               # Lista de URLs de referência e testes
+├── docs/                   # Pasta central de documentação (AGENTS, HANDOVER, TASKS, AI_TOOLS, INSTALACAO)
+├── links.txt               # Lista de URLs de referência e testes
 ```
 
 ---
@@ -96,11 +98,15 @@ pip install edge-tts gtts pyttsx3
 
 ### 2. Edição de Vídeo e Áudio
 
-* **Corte rápido de trecho de vídeo (sem re-encoding):**
+* **Corte Rápido de Vídeo (`cut_video.py`):**
   ```bash
   python3 cut_video.py
   ```
-  *Entradas solicitadas:* Caminho do arquivo de vídeo, ponto de início (ex: `00:02:15`), duração do corte (ex: `00:05:00`) e arquivo de saída.
+  O script utiliza a pasta `videos/` como origem e destino padrão:
+  - **Vídeo de entrada:** Informe o nome do arquivo presente na pasta `videos/` (ex: `meu_video.mp4`).
+  - **Vídeo de saída:** Nome do arquivo a ser salvo em `videos/` (ex: `corte.mp4`).
+  - **Início:** Tempo inicial (Padrão: `00:00:00`).
+  - **Duração:** Duração do corte (Padrão: `00:05:00`).
 
 * **Remover parte final do vídeo:**
   ```bash
@@ -154,14 +160,14 @@ python3 text_to_speech.py
 | **Síntese de Voz** | **Edge TTS** | Vozes neurais muito naturais (Microsoft) | ❌ Não |
 | **Síntese de Voz** | **pyttsx3** | Leve e funciona em qualquer SO sem conexão | ✅ Sim |
 
-Para um guia completo sobre cada modelo e benchmarks de performance, consulte [AI_TOOLS.md](AI_TOOLS.md).
+Para um guia completo sobre cada modelo e benchmarks de performance, consulte [AI_TOOLS.md](docs/AI_TOOLS.md).
 
 ---
 
 ## 📄 Documentações Relacionadas
 
-* [INSTALACAO.md](INSTALACAO.md): Guia de resolução de dependências, drivers CUDA e FFmpeg.
-* [AI_TOOLS.md](AI_TOOLS.md): Detalhes técnicos, modelos suportados e parâmetros de IA.
+* [INSTALACAO.md](docs/INSTALACAO.md): Guia de resolução de dependências, drivers CUDA e FFmpeg.
+* [AI_TOOLS.md](docs/AI_TOOLS.md): Detalhes técnicos, modelos suportados e parâmetros de IA.
 
 ---
 
